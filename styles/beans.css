@@ -23,3 +23,25 @@ main {
     align-self: center;
     justify-self: center;
 }
+
+.content {
+    padding: 15px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.content h2,
+.content p {
+    margin: 0;
+}
+
+.content h2 {
+    font-size: medium;
+}
+
+.attributes {
+    align-self: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

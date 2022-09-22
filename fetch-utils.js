@@ -18,15 +18,15 @@ export async function getBeans(name, astroSign){
     return response;
 }
 
-export async function getAstro() {
+export async function getAstroSigns() {
     const response = await client.from('beanie_baby_astro_signs').select();
     return response;
 }
 
-export function renderAstroOption(sign) {
+export function renderAstroOption(astroSign) {
     const option = document.createElement('option');
-    option.value = sign.name;
-    option.textContent = sign.name;
+    option.value = astroSign.name;
+    option.textContent = astroSign.name;
     return option;
 }
 
@@ -37,6 +37,15 @@ export function renderBeans(beanie) {
     const img = document.createElement('img');
     img.src = beanie.image
     img.alt = beanie.title
+
+    const content = document.createElement('div');
+    content.classList.add('content');
+
+    const h2 = document.createElement('h2');
+    h2.textContent = beanie.title;
+
+    const attributes = document.createElement('p');
+    attributes.classList.add('attributes');
 
     const beast = document.createElement('span');
     beast.textContent = beanie.animal;
@@ -49,15 +58,6 @@ export function renderBeans(beanie) {
 
     const astroSign = document.createElement('span');
     astroSign.textContent = beanie.astroSign;
-
-    const content = document.createElement('div');
-    content.classList.add('content');
-
-    const h2 = document.createElement('h2');
-    h2.textContent = beanie.title;
-
-    const attributes = document.createElement('p');
-    attributes.classList.add('attributes');
 
     attributes.append(beast, subtheme, astroSign);
 

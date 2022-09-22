@@ -5,6 +5,7 @@ main {
 }
 
 
+
 .card {
     height: 175px;
     width: 400px;
@@ -43,5 +44,12 @@ main {
     align-self: center;
     display: flex;
     flex-wrap: wrap;
+    gap: 10px;
+}
+
+.list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-rows: 175px;
     gap: 10px;
 }

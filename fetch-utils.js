@@ -5,9 +5,10 @@ const SUPABASE_KEY =
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function getBeans(name, astroSign){
-    let query = client.from('beanie_babies').select('*', { count: 'exact'}).order('title').limit(100);
+    let query = client.from('beanie_babies').select('*', { count: 'exact' }).order('title').limit(100);
+    
     if (name) {
-        query = query.ilike('title', `%${title}`);
+        query = query.ilike('title', `%${name}`);
     }
 
     if (astroSign) {
@@ -30,39 +31,38 @@ export function renderAstroOption(astroSign) {
     return option;
 }
 
-export function renderBeans(beanie) {
+export function renderBeans(bean) {
     const li = document.createElement('li');
     li.classList.add('card');
 
     const img = document.createElement('img');
-    img.src = beanie.image
-    img.alt = beanie.title
+    img.src = bean.image;
+    img.alt = bean.title;
 
     const content = document.createElement('div');
     content.classList.add('content');
 
     const h2 = document.createElement('h2');
-    h2.textContent = beanie.title;
+    h2.textContent = bean.title;
 
     const attributes = document.createElement('p');
     attributes.classList.add('attributes');
 
     const beast = document.createElement('span');
-    beast.textContent = beanie.animal;
+    beast.textContent = bean.animal;
 
     const subtheme = document.createElement('span');
-    subtheme.textContent = beanie.subtheme;
+    subtheme.textContent = bean.subtheme;
 
     const release = document.createElement('span');
-    release.textContent = beanie.releaseYear;
+    release.textContent = bean.releaseYear;
 
     const astroSign = document.createElement('span');
-    astroSign.textContent = beanie.astroSign;
+    astroSign.textContent = bean.astroSign;
 
     attributes.append(beast, subtheme, astroSign);
 
-    li.append(img,content)
+    li.append(img, content);
 
     return li;
-    
 }

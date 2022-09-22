@@ -4,6 +4,7 @@ import { renderBeans, renderAstroOption, getAstroSigns, getBeans } from './fetch
 const search = document.getElementById('form');
 const beanList = document.getElementById('bean-list');
 const signSelect = document.getElementById('astro');
+const display = document.getElementById('displaying');
 /* State */
 let error = null;
 let count = 0;
@@ -31,24 +32,21 @@ async function findBeans(name, astroSign) {
     count = response.count;
     beans = response.data;
 
+    displayNotifications();
     if (!error) {
         displayBeans();
     }
 }
 
-
-
-function displayAstroSignOptions() {
-    for (const astroSign of astroSigns) {
-        const option = renderAstroOption(astroSign);
-        signSelect.append(option);
-    }
-}
-
+search.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const formData = new FormData(search);
+    findBeans(formData.get('name'), formData.get('astroSign'));
+});
 
 /* Display Functions */
 function displayBeans() {
-    beanList.innerHTML = '';
+    beanList.innerHTML = '';  
 
     for (const bean of beans) {
         const beanEl = renderBeans(bean);
@@ -56,6 +54,22 @@ function displayBeans() {
     }
 }
 
+function displayNotifications() {
+    if (error) {
+        display.classList.add('error');
+        display.textContent = error.message;
+    } else {
+        display.classList.remove('error');
+        display.textContent = `Showing ${beans.length} of ${count} found beans`;
+    }
+}
+
+function displayAstroSignOptions() {
+    for (const astroSign of astroSigns) {
+        const option = renderAstroOption(astroSign);
+        signSelect.append(option);
+    }
+}
 // (don't forget to call any display functions you want to run on page load!)
 // displayBeans();
 // displayAstroSignOptions();

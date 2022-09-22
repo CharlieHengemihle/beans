@@ -62,6 +62,8 @@ export function renderBeans(bean) {
 
     attributes.append(beast, subtheme, astroSign);
 
+    content.append(h2, attributes, release);
+
     li.append(img, content);
 
     return li;

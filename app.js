@@ -14,6 +14,7 @@ let beans = [];
 /* Events */
 window.addEventListener('load', async () => {
 
+
     const response = await getAstroSigns();
 
     error = response.error;
@@ -41,7 +42,7 @@ async function findBeans(name, astroSign) {
 search.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(search);
-    findBeans(formData.get('name'), formData.get('astroSign'));
+    findBeans(formData.get('name'), formData.get('astrology'));
 });
 
 /* Display Functions */

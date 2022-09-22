@@ -1,3 +1,25 @@
-.card {
+main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
 
+
+.card {
+    height: 175px;
+    width: 400px;
+    background: rgb(141, 228, 41);
+    border: 5px solid rgb(203, 103, 221);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+
+    display: grid;
+    grid-template-columns: 175px 1fr;
+}
+
+.card img {
+    width: 95%;
+    height: 95%;
+    object-fit: contain;
+    align-self: center;
+    justify-self: center;
 }

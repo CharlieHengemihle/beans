@@ -4,15 +4,18 @@ const SUPABASE_KEY =
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-export async function getBeans(name, astroSign){
-    let query = client.from('beanie_babies').select('*', { count: 'exact' }).order('title').limit(100);
+export async function getBeans(filter, paging){
+    const page = paging.page;
+    const pageSize = paging.pageSize;
     
-    if (name) {
-        query = query.ilike('title', `%${name}`);
+    let query = client.from('beanie_babies').select('*', { count: 'exact' }).order('title').range((page - 1) * pageSize, page * pageSize - 1).limit(25);
+    
+    if (filter.name) {
+        query = query.ilike('title', `%${filter.name}`);
     }
 
-    if (astroSign) {
-        query = query.eq('astroSign', astroSign);
+    if (filter.astroSign) {
+        query = query.eq('astroSign', filter.astroSign);
     }
     const response = await query;
 

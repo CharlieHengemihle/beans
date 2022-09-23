@@ -12,6 +12,7 @@
     <link rel="icon" type="image/x-icon" href="assets/alchemy-favicon.png" />
 
     <!-- js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <script type="module" src="app.js"></script>
 
     <!-- fonts -->
@@ -19,6 +20,7 @@
 
     <!-- css -->
     <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/beans.css" />
     <link rel="stylesheet" href="styles/global.css" />
     <!-- add link for page specific css -->
 
@@ -31,6 +33,23 @@
     </header>
 
     <main>
+        <section class="search">
+            <form id="form">
+                <input name="name">
+                <select name="astrology" id="astro">
+                    <option id = 'astro-drop' value="">All Astrological Signs</option>
+                </select>
+                <button id="search-button">Search</button>
+            </form>
+            <p id="displaying"></p>
+        </section>
+        <section>
+                <ul class="list" id="bean-list">
+
+                </ul>
+
+                <!-- <button id="next">More BEANS!?</button> -->
+        </section>
 
     </main>
 

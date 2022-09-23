@@ -61,13 +61,13 @@ async function findBeans() {
 // )
 
 const observer = new IntersectionObserver((entries) => {
-    for(const entry of entries) {
+    for (const entry of entries) {
         if (entry.isIntersecting) {
             observer.unobserve(entry.target);
             getMoreBeans();
         }
     }
-})
+});
 
 async function getMoreBeans() {
     paging.page++;
@@ -87,7 +87,7 @@ search.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData(search);
     filter.name = formData.get('name');
-    filter.astroSign = formData.get('astrology')
+    filter.astroSign = formData.get('astrology');
 
     paging.page = 1;
 
@@ -109,8 +109,8 @@ function displayMoreBeans() {
         lastEl = beanEl;
     }
 
-    if(beans.length < count){
-    observer.observe(lastEl);
+    if (beans.length < count){
+        observer.observe(lastEl);
     }
 }
 function displayNotifications() {
